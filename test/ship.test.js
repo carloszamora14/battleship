@@ -9,7 +9,7 @@ describe('checkForShip', function () {
       ]
     };
 
-    expect(checkForShip(player, [9, 9])).to.be.false;
+    expect(checkForShip(player, [9, 9])).to.be.null;
   });
 
   it('should correctly report a ship located at the given coordinate', function () {
@@ -19,7 +19,7 @@ describe('checkForShip', function () {
       ]
     };
 
-    expect(checkForShip(player, [0, 0])).to.be.true;
+    expect(checkForShip(player, [0, 0])).to.deep.equal(player.ships[0]);
   });
 
   it('should handle ships located at more than one coordinate', function () {
@@ -29,8 +29,8 @@ describe('checkForShip', function () {
       ]
     };
 
-    expect(checkForShip(player, [0, 0])).to.be.true;
-    expect(checkForShip(player, [0, 1])).to.be.true;
+    expect(checkForShip(player, [0, 0])).to.deep.equal(player.ships[0]);
+    expect(checkForShip(player, [0, 1])).to.deep.equal(player.ships[0]);
   });
 
   it('should handle checking multiple ships', function () {
@@ -42,11 +42,13 @@ describe('checkForShip', function () {
       ]
     };
 
-    expect(checkForShip(player, [0, 0])).to.be.true;
-    expect(checkForShip(player, [0, 1])).to.be.true;
-    expect(checkForShip(player, [1, 0])).to.be.true;
-    expect(checkForShip(player, [1, 1])).to.be.true;
-    expect(checkForShip(player, [2, 3])).to.be.true;
+    expect(checkForShip(player, [0, 0])).to.deep.equal(player.ships[0]);
+    expect(checkForShip(player, [0, 1])).to.deep.equal(player.ships[0]);
+
+    expect(checkForShip(player, [1, 0])).to.deep.equal(player.ships[1]);
+    expect(checkForShip(player, [1, 1])).to.deep.equal(player.ships[1]);
+
+    expect(checkForShip(player, [2, 3])).to.deep.equal(player.ships[2]);
   });
 });
 
