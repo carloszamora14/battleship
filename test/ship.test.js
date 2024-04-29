@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const { checkForShip } = require('../game_logic/ship');
+const { checkForShip, damageShip } = require('../game_logic/ship');
 
 describe('checkForShip', function () {
   it('should correctly report no ship at a given player coordinate', function () {
@@ -47,5 +47,19 @@ describe('checkForShip', function () {
     expect(checkForShip(player, [1, 0])).to.be.true;
     expect(checkForShip(player, [1, 1])).to.be.true;
     expect(checkForShip(player, [2, 3])).to.be.true;
+  });
+});
+
+describe('damageShip', function () {
+  it('should register damage on a given ship at a given location', function () {
+    const ship = {
+      locations: [[0, 0]],
+      damage: []
+    };
+
+    damageShip(ship, [0, 0]);
+
+    expect(ship.damage).to.not.be.empty;
+    expect(ship.damage[0]).to.deep.equal([0, 0]);
   });
 });
