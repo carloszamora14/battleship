@@ -11,6 +11,11 @@ function checkForShip(player, coordinates) {
   return shipPresent;
 }
 
+function damageShip(ship, coordinates) {
+  ship.damage.push(coordinates);
+}
+
 module.exports = {
-  checkForShip
+  checkForShip,
+  damageShip
 };
